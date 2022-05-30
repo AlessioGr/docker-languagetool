@@ -53,6 +53,12 @@ WORKDIR /LanguageTool
 
 RUN mkdir /nonexistent && touch /nonexistent/.languagetool.cfg
 
+#Sudo stuff
+RUN apk add --no-cache su-exec
+
+RUN set -ex && apk --no-cache add sudo
+#
+
 COPY --chown=languagetool start.sh start.sh
 
 COPY --chown=languagetool config.properties config.properties
