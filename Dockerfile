@@ -4,8 +4,9 @@ FROM debian:buster as build
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-ARG langtool_languageModel=/storage/ngrams
-ENV langtool_languageModel=/storage/ngrams
+ADD /ngrams /storage/ngrams
+ARG langtool_languageModel=/ngrams
+ENV langtool_languageModel=/ngrams
 
 RUN apt-get update -y \
     && apt-get install -y \
@@ -42,8 +43,9 @@ WORKDIR /languagetool
 
 FROM alpine:3.16.0
 
-ARG langtool_languageModel=/storage/ngrams
-ENV langtool_languageModel=/storage/ngrams
+ADD /ngrams /storage/ngrams
+ARG langtool_languageModel=/ngrams
+ENV langtool_languageModel=/ngrams
 
 RUN apk add --no-cache \
     bash \
