@@ -4,7 +4,7 @@ FROM debian:buster as build
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-ADD /ngrams /storage/ngrams
+ADD /storage/ngrams /ngrams
 ARG langtool_languageModel=/ngrams
 ENV langtool_languageModel=/ngrams
 
@@ -43,7 +43,7 @@ WORKDIR /languagetool
 
 FROM alpine:3.16.0
 
-ADD /ngrams /storage/ngrams
+ADD /storage/ngrams /ngrams
 ARG langtool_languageModel=/ngrams
 ENV langtool_languageModel=/ngrams
 
