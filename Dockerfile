@@ -4,6 +4,9 @@ FROM debian:buster as build
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+ARG langtool_languageModel=/storage/ngrams
+ENV langtool_languageModel=/storage/ngrams
+
 RUN apt-get update -y \
     && apt-get install -y \
     locales \
@@ -38,6 +41,9 @@ RUN bash -c "./hunspell.sh"
 WORKDIR /languagetool
 
 FROM alpine:3.16.0
+
+ARG langtool_languageModel=/storage/ngrams
+ENV langtool_languageModel=/storage/ngrams
 
 RUN apk add --no-cache \
     bash \
