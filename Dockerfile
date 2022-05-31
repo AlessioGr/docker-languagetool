@@ -43,7 +43,7 @@ WORKDIR /languagetool
 
 FROM alpine:3.16.0
 
-ADD /storage/ngrams /ngrams
+ADD storage/ngrams /ngrams
 ARG langtool_languageModel=/ngrams
 ENV langtool_languageModel=/ngrams
 
