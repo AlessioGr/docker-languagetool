@@ -69,9 +69,12 @@ COPY --chown=languagetool start.sh start.sh
 
 COPY --chown=languagetool config.properties config.properties
 
-USER languagetool
+# Improving the spell checker
+# http://wiki.languagetool.org/hunspell-support
+COPY en_spelling_additions.txt en_spelling_additions.txt
+RUN  (echo; cat en_spelling_additions.txt) >> org/languagetool/resource/en/hunspell/spelling.txt
 
-USER root
+USER languagetool
 
 HEALTHCHECK --timeout=10s --start-period=5s CMD curl --fail --data "language=en-US&text=a simple test" http://localhost:8010/v2/check || exit 1
 
