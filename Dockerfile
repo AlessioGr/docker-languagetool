@@ -76,6 +76,8 @@ RUN  (echo; cat en_spelling_additions.txt) >> org/languagetool/resource/en/hunsp
 
 USER languagetool
 
+USER root
+
 HEALTHCHECK --timeout=10s --start-period=5s CMD curl --fail --data "language=en-US&text=a simple test" http://localhost:8010/v2/check || exit 1
 
 CMD [ "bash", "start.sh" ]
