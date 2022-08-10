@@ -1,4 +1,4 @@
-ARG LANGUAGETOOL_VERSION=5.7
+ARG LANGUAGETOOL_VERSION=5.8
 
 FROM debian:buster as build
 
@@ -40,7 +40,7 @@ RUN bash -c "./bridj.sh"
 RUN bash -c "./hunspell.sh"
 WORKDIR /languagetool
 
-FROM alpine:3.16.0
+FROM alpine:3.16.2
 
 ARG langtool_languageModel=/ngrams
 ENV langtool_languageModel=/ngrams
